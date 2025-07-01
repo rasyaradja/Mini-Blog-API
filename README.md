@@ -19,7 +19,7 @@ A simple Express.js REST API for a mini blog, demonstrating layered middleware, 
 ### Installation
 
 ```bash
-git clone [https://github.com/rasyaradja/Mini-Blog-AP](https://github.com/rasyaradja/Mini-Blog-API)
+git clone https://github.com/rasyaradja/Mini-Blog-API.git
 cd mini-blog-api
 npm install
 ```
