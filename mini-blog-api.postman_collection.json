@@ -1,0 +1,137 @@
+{
+  "info": {
+    "name": "Mini Blog API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Posts",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/posts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["posts"]
+        }
+      }
+    },
+    {
+      "name": "Create Post (Editor)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "x-user-role", "value": "editor" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"New Post\",\n  \"content\": \"This is a new post.\",\n  \"author\": \"Diana\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/posts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["posts"]
+        }
+      }
+    },
+    {
+      "name": "Create Post (No Role)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Should Fail\",\n  \"content\": \"No role header.\",\n  \"author\": \"Eve\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/posts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["posts"]
+        }
+      }
+    },
+    {
+      "name": "Update Post (Editor)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "x-user-role", "value": "editor" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Updated Title\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/posts/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["posts", "1"]
+        }
+      }
+    },
+    {
+      "name": "Update Post (No Title)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "x-user-role", "value": "editor" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"content\": \"Missing title field.\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/posts/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["posts", "1"]
+        }
+      }
+    },
+    {
+      "name": "Delete Post (Admin)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "x-user-role", "value": "admin" }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/posts/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["posts", "1"]
+        }
+      }
+    },
+    {
+      "name": "Delete Post (Not Admin)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "x-user-role", "value": "editor" }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/posts/2",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["posts", "2"]
+        }
+      }
+    }
+  ]
+}
