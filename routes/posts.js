@@ -24,7 +24,7 @@ router.post('/', logger, auth('editor'), validateBody(['title', 'content']), att
 });
 
 // PUT /posts/:id → logger → auth('editor') → validateBody(['title']) → attachTimestamp
-router.put('/:id', logger, auth('editor'), validateBody(['title']), attachTimestamp, (req, res, next) => {
+router.put('/:id', logger, auth('editor'), validateBody(['title', 'content']), attachTimestamp, (req, res, next) => {
   const id = parseInt(req.params.id);
   const post = posts.find(p => p.id === id);
   if (!post) {
@@ -33,12 +33,13 @@ router.put('/:id', logger, auth('editor'), validateBody(['title']), attachTimest
     return next(err);
   }
   post.title = req.body.title;
+  post.content = req.body.content;
   post.timestamp = req.timestamp;
   res.json(post);
 });
 
-// DELETE /posts/:id → logger → auth('admin') → attachTimestamp
-router.delete('/:id', logger, auth('admin'), attachTimestamp, (req, res, next) => {
+// DELETE /posts/:id → logger → auth('admin') 
+router.delete('/:id', logger, auth('admin'), (req, res, next) => {
   const id = parseInt(req.params.id);
   const index = posts.findIndex(p => p.id === id);
   if (index === -1) {
